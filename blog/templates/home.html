@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    {% for post in all_mod %}
+    <h1>{{post.title}}</h1>
+    <h4>posted on {{post.time_stamp|timesince}} ago</h4>
+    <h3>{{post.body|linebreaksbr}}</h3>
+    <hr>
+    {% endfor %}
+  </body>
+</html>

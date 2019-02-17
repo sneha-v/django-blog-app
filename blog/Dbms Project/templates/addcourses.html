@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Admin Panel-Add Courses</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+    #header.header-scrolled {
+        background: #fff;
+        padding: 20px 0;
+        height: 72px;
+        transition: all 0.5s;
+    }
+    #header {
+        padding: 30px 0;
+        height: 92px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        transition: all 0.5s;
+        z-index: 997;
+        background-color: #fff;
+        box-shadow: 5px 0px 15px #c3c3c3;
+    }
+    #header #logo h1 {
+        font-size: 34px;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        letter-spacing: 3px;
+    }
+    #header #logo h1 a, #header #logo h1 a:hover {
+        color: #000;
+        padding-left: 10px;
+        border-left: 4px solid grey;
+    }
+    #nav-menu-container {
+        float: right;
+        margin: 0;
+    }
+    .nav-menu > li {
+        margin-left: 10px;
+    }
+    .nav-menu > li {
+        float: left;
+    }
+    .nav-menu li {
+        position: relative;
+        white-space: nowrap;
+    }
+    .nav-menu, .nav-menu * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .header-scrolled .nav-menu li:hover > a, .header-scrolled .nav-menu > .menu-active > a {
+        color: #18d26e;
+    }
+    .header-scrolled .nav-menu a {
+        color: black;
+    }
+    .nav-menu li:hover > a, .nav-menu > .menu-active > a {
+        color: #18d26e;
+    }
+    .nav-menu a {
+        padding: 0 8px 10px 8px;
+        text-decoration: none;
+        display: inline-block;
+        color: #000;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        text-transform: uppercase;
+        outline: none;
+    }
+    #mobile-nav-toggle {
+        display: inline;
+    }
+    #mobile-nav-toggle {
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 999;
+        margin: 20px 20px 0 0;
+        border: 0;
+        background: none;
+        font-size: 24px;
+        display: none;
+        transition: all 0.4s;
+        outline: none;
+        cursor: pointer;
+    }
+    #mobile-body-overly {
+        width: 100%;
+        height: 100%;
+        z-index: 997;
+        top: 0;
+        left: 0;
+        position: fixed;
+        background: rgba(0, 0, 0, 0.7);
+        display: none;
+    }
+    body.mobile-nav-active #mobile-nav {
+        left: 0;
+    }
+    #mobile-nav {
+        position: fixed;
+        top: 0;
+        padding-top: 18px;
+        bottom: 0;
+        z-index: 998;
+        background: rgba(0, 0, 0, 0.8);
+        left: -260px;
+        width: 260px;
+        overflow-y: auto;
+        transition: 0.4s;
+    }
+    #mobile-nav ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+    #mobile-nav ul li {
+        position: relative;
+    }
+    #mobile-nav ul li a {
+        color: #fff;
+        font-size: 13px;
+        text-transform: uppercase;
+        overflow: hidden;
+        padding: 10px 22px 10px 15px;
+        position: relative;
+        text-decoration: none;
+        width: 100%;
+        display: block;
+        outline: none;
+        font-weight: 700;
+        font-family: "Montserrat", sans-serif;
+    }
+    #mobile-nav ul .menu-has-children i.fa-chevron-up {
+        color: #18d26e;
+    }
+    #mobile-nav ul .menu-has-children i {
+        position: absolute;
+        right: 0;
+        z-index: 99;
+        padding: 15px;
+        cursor: pointer;
+        color: #fff;
+    }
+    #mobile-nav ul .menu-item-active {
+        color: #18d26e;
+    }
+    #mobile-nav ul li li {
+        padding-left: 30px;
+    }
+
+    .menu-has-children ul
+    {display: none;}
+
+    .sf-arrows .sf-with-ul {
+      padding-right: 30px;
+    }
+
+    .sf-arrows .sf-with-ul:after {
+      content: "\f107";
+      position: absolute;
+      right: 15px;
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      color:black;
+    }
+
+    .sf-arrows ul .sf-with-ul:after {
+      content: "\f105";
+    }
+
+
+    .nav-menu li:hover > ul,
+    .nav-menu li.sfHover > ul {
+      display: block;
+    }
+    .nav-menu ul {
+        margin: 4px 0 0 0;
+        padding: 10px;
+        box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+        background: #fff;
+    }
+    .nav-menu ul {
+        position: absolute;
+        display: none;
+        top: 100%;
+        left: 0;
+        z-index: 99;
+    }
+
+    .sf-arrows .sf-with-ul {
+        padding-right: 30px;
+    }
+    .nav-menu li {
+        position: relative;
+        white-space: nowrap;
+    }
+
+
+    @media (max-width: 768px){
+    #nav-menu-container {
+        display: none;
+    }
+
+    #mobile-nav-toggle {
+        display: inline;
+    }
+    }
+
+    .panel-heading {
+        padding: 5px 15px;
+    }
+
+    .panel-footer {
+    	padding: 1px 15px;
+    	color: #A0A0A0;
+    }
+
+    .profile-img {
+    	width: 96px;
+    	height: 96px;
+    	margin: 0 auto 10px;
+    	display: block;
+    	-moz-border-radius: 50%;
+    	-webkit-border-radius: 50%;
+    	border-radius: 50%;
+    }
+    .notice {
+        padding: 15px;
+        background-color: #fafafa;
+        border-left: 6px solid #7f7f84;
+        margin-bottom: 10px;
+        -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+           -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+                box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+    }
+    .notice-sm {
+        padding: 10px;
+        font-size: 80%;
+    }
+    .notice-lg {
+        padding: 35px;
+        font-size: large;
+    }
+    .notice-success {
+        border-color: #80D651;
+    }
+    .notice-success>strong {
+        color: #80D651;
+    }
+    .notice-info {
+        border-color: #45ABCD;
+    }
+    .notice-info>strong {
+        color: #45ABCD;
+    }
+    .notice-warning {
+        border-color: #FEAF20;
+    }
+    .notice-warning>strong {
+        color: #FEAF20;
+    }
+    .notice-danger {
+        border-color: #d73814;
+    }
+    .notice-danger>strong {
+        color: #d73814;
+    }
+</style>
+
+</head>
+  <body>
+    <header id="header">
+    <div class="container">
+
+      <div id="logo" class="pull-left">
+        <h1><a href="#">Admin Panel</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+
+      <nav id="nav-menu-container">
+        <ul class="nav-menu">
+          <li class="menu-active"><a href="/addtopics">Add Topics</a></li>
+          <li><a href="/admin">Go Back</a></li>
+          <li><a href="/logout" class="button">LogOut</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header><!-- #header -->
+  <div class="container" style="margin:150px">
+    <div class="row">
+      <div class="col-sm-6 col-md-4 col-md-offset-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <strong> Add Course</strong>
+          </div>
+          <div class="panel-body">
+            <form role="form" action="/addcourses" method="post">
+              <fieldset>
+                <div class="row">
+                  <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        <input class="form-control" id="cname" type="text" name="cname" value="" placeholder="Course name" autofocus>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <span class="input-group-addon">
+                          <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                          <input class="form-control" id="cdur" type="text" name="cdur" value="" placeholder="Course Duration">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="SUBMIT">
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+          <div class="panel-footer ">
+            <div class="container">
+              {%if flag == 1%}
+              <div class="notice notice-success">
+                  <strong>success</strong> {{error}}
+              </div>
+    {%endif%}
+    {%if flag == 0%}
+    <div class="notice notice-danger">
+        <strong>Oh snap</strong> {{error}}
+    </div>
+    {%endif%}
+  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
